@@ -1,0 +1,34 @@
+<view class="content">
+	<view class="nav">
+		<view class="nav-left">
+			<scroll-view scroll-y>
+				<block wx:for="{{garbageSort}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+					<view data-event-opts="{{[['tap',[['selectClassify',['$0'],[[['garbageSort','',index,'index']]]]]]]}}" class="{{['nav-left-item',item.active?item.class:item.classborder]}}"
+					 bindtap="__e">{{''+item.name+''}}</view>
+				</block>
+			</scroll-view>
+		</view>
+		<view class="nav-right">
+			<scroll-view style="{{('height:'+height+'px')}}" scroll-y scroll-with-animation>
+				<view class="view-img">
+					<view>
+						<block wx:if="{{index!=null}}">
+							<image class="show-img" src="{{'../../static/showimg/style1-'+index+'.jpg'}}"></image>
+						</block>
+					</view>
+				</view>
+				<block  wx:for="{{currentDetail}}" wx:for-item="item" wx:for-index="i" wx:key="i">
+					<view data-event-opts="{{[['tap',[['showDetailGarbage',['$0'],[[['currentDetail','',i]]]]]]]}}" class="{{['nav-right-item',i%2==0?'style1':'']}}"
+					 bindtap="__e">
+						<view>{{item.garbageName}}</view>
+					</view>
+				</block>
+			</scroll-view>
+		</view>
+	</view>
+	<view>
+		<my-popup vue-id="1" show="{{detailPopupShow}}" detail="{{detailShowObject}}" data-event-opts="{{[['^hideMypopup',[['hideMypopup']]]]}}"
+		 bind:hideMypopup="__e" bind:__l="__l"></my-popup>
+	</view>
+	<share vue-id="2" bind:__l="__l"></share>
+</view>

@@ -1,0 +1,121 @@
+<view>
+	<block wx:if="{{false}}">
+		<view>
+			<swiper indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}">
+				<block wx:for="{{swiper}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+					<swiper-item class="swiper-flex">
+						<view data-event-opts="{{[['tap',[['navigateTo',['$0'],[[['swiper','',index,'skipUrl']]]]]]]}}" class="swiper-item"
+						 style="background-color:antiquewhite;" bindtap="__e">
+							<image class="swiper-img" src="{{item.imageUrl}}"></image>
+						</view>
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
+	</block>
+	<view>
+		<swiper indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}">
+			<swiper-item wx:for="{{bnrUrl}}" wx:for-index="index" wx:key="uni" class="swiper-flex">
+				<view class="swiper-item" style="background-color:antiquewhite;">
+					<image class="swiper-img" src='{{item.imgPath}}' style="height: auto;"></image>
+				</view>
+			</swiper-item>
+		</swiper>
+	</view>
+	<view class="form-view">
+		<!-- <view class="tip-text">{{"你懂得如何垃圾分类吗?"}}</view> -->
+		<form data-event-opts="{{[['submit',[['formSubmit',['$event']]]],['reset',[['formReset',['$event']]]]]}}" class="form-form"
+		 bindsubmit="__e" bindreset="__e">
+			<view class="input-view">
+				<view data-event-opts="{{[['tap',[['takePhoto2',['$event']]]]]}}" class="input-view-item input-view-camera" bindtap="__e">
+					<image class="search-img" src="../../static/icos/takephoto.png" style="height: 75rpx;width: 85rpx;"></image>
+				</view>
+				<view data-event-opts="{{[['tap',[['readyRecord2',['$event']]]]]}}" class="input-view-item input-view-speech"
+				 bindtap="__e">
+					<!-- <image class="search-img" src="../../static/icos/maikefeng.png" style="height: 75rpx;width: 75rpx;"></image> -->
+				</view>
+				<view class="input-view-item input-view-search"><input class="input-search" confirm-type="search" id="inputid" name="input"
+					 placeholder="输入搜索关键词" data-event-opts="{{[['confirm',[['searchKeyword',['$event']]]],['search',[['searchKeyword',['$event']]]],['input',[['__set_model',['','keyword','$event',[]]]]]]}}"
+					 bindconfirm="__e" bindsearch="__e" bindinput="__e" /></view>
+				<view data-event-opts="{{[['tap',[['searchKeyword',['$event']]]]]}}" class=" font-search" bindtap="__e">查询</view>
+			</view>
+		</form>
+	</view>
+	<view hidden="{{!(true)}}">
+		<view align-items="center">
+			<uni-notice-bar vue-id="1" show-icon="false" color="#999" backgroundColor="rgb(242,242,242)" text=""
+			 bind:__l="__l"></uni-notice-bar>
+		</view>
+	</view>
+
+ <scroll-view class="news-item-container">
+    <block>
+    <view wx:for="{{infoList}}"  wx:for-item="item" wx:for-index="index">
+      <navigator url="/pages/information/information_Detail/information_Detail?id={{item.id}}">
+        <view class="news-item" >
+          <view class="news-item-left">
+            <text class="news-item-title">{{item.title}}</text>
+          </view>
+          <view class="news-item-right">
+            <image src="{{item.infoImg}}"  class="news-image"/>
+          </view>
+        </view>
+      </navigator>
+      </view>
+      <!-- <navigator url="">
+        <view class="news-item" >
+          <view class="news-item-left">
+            <text class="news-item-title">保卫地球环境人人有责</text>
+          </view>
+          <view class="news-item-right">
+            <image src="../../static/icos/ico-2.jpg"  class="news-image"/>
+          </view>
+        </view>
+      </navigator>
+      <navigator url="">
+        <view class="news-item" >
+          <view class="news-item-left">
+            <text class="news-item-title">保卫地球环境人人有责</text>
+          </view>
+          <view class="news-item-right">
+            <image src="../../static/icos/ico-3.jpg"  class="news-image"/>
+          </view>
+        </view>
+      </navigator> -->
+    </block>
+  </scroll-view>
+	<!-- <view>
+		<view class="simpleTips">{{''+randomTip+''}}</view>
+	</view> -->
+	<!-- <view class="main-show-classify">
+		<view class="main-classify">
+			<view data-event-opts="{{[['tap',[['switchTabToClassify',[1]]]]]}}" bindtap="__e">
+				<image class="main-img" src="../../static/icos/ico-1.jpg"></image>
+			</view>
+			<view data-event-opts="{{[['tap',[['switchTabToClassify',[2]]]]]}}" bindtap="__e">
+				<image class="main-img" src="../../static/icos/ico-2.jpg"></image>
+			</view>
+		</view>
+		<view class="main-classify">
+			<view data-event-opts="{{[['tap',[['switchTabToClassify',[3]]]]]}}" bindtap="__e">
+				<image class="main-img" src="../../static/icos/ico-3.jpg"></image>
+			</view>
+			<view data-event-opts="{{[['tap',[['switchTabToClassify',[4]]]]]}}" bindtap="__e">
+				<image class="main-img" src="../../static/icos/ico-4.jpg"></image>
+			</view>
+		</view> -->
+	</view>
+	<view>
+		<!-- <uni-popup vue-id="2" show="{{popupShow}}" position="bottom" data-event-opts="{{[['^hidePopup',[['hidePopup']]]]}}"
+		 bind:hidePopup="__e" bind:__l="__l" vue-slots="{{['default']}}">
+			<view class="view-popup">
+				<view class="recording-title">按住 说话</view>
+				<view class="recording-box"><canvas id="canvas" canvas-id="canvas">
+						<view data-event-opts="{{[['touchstart',[['start',['$event']]]],['touchend',[['end',['$event']]]]]}}" class="recording-button"
+						 bindtouchstart="__e" bindtouchend="__e"></view>
+					</canvas></view>
+			</view>
+		</uni-popup> -->
+	<!-- </view> -->
+	<!-- <share vue-id="3" bind:__l="__l"></share> -->
+</view>

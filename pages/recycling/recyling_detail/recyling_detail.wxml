@@ -1,0 +1,22 @@
+<view class="container">
+<view class="ar_coverpath">
+    <image src="{{cyclingData.cyclingImg}}" mode="aspectFill"></image>
+</view>
+<view class="ar_cont">
+    <text class="ar_cont_h1">{{cyclingData.cyclingName}}</text>
+        <text>\n</text>
+    <text class="ar_cont_h2">{{cyclingData.cyclingMan}}</text>
+    <text class="ar_cont_price">联系方式：{{cyclingData.cyclingMobile}}</text>
+    <text>   
+    {{cyclingData.cyclingIntroduce}}
+    </text>
+    <view class="ar_line"></view>
+    <text class="ar_cont_h1">详情服务</text>
+    <text>
+    {{cyclingData.cyclingDetail}}
+    </text>
+    <button class="ar_book" bindtap="bookTap" data-phone="{{cyclingData.cyclingMobile}}">联系</button>
+     <button class="ar_book" bindtap="bookTap2">导航</button>
+</view>
+
+</view>

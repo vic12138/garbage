@@ -1,0 +1,53 @@
+<!--recying.wxml-->
+
+<view class="container">
+<scroll-view  scroll-y="true"  class="page-body" bindscrolltolower="loadMore">
+  <!--category picker-->
+  <view class="ar_picker" style="background:hsl(0, 0%, 89%);" >
+    <view class="ar_picker_wrap" bindtap="navigateCity">
+        <!-- <picker bindchange="bindCasPickerChange" value="{{casIndex}}" range="{{casArray}}"> -->
+            <view >
+                <text>{{city}}</text>
+            </view>
+        <!-- </picker> -->
+    </view>
+  </view>
+  <!--list-->
+  <view class="nav_section">
+    <view wx:if="{{cyclingData.length!=0}}">
+        <block wx:for="{{cyclingData}}" wx:key="item.id">
+            <view class="nav_section_items" bindtap="navigateDetail" data-id="{{item.id}}">
+                <!--image-->
+                <view class="section_image" >
+                <block wx:if="{{item.cyclingImg}}">
+                    <image src="{{item.cyclingImg}}" mode="aspectFill"></image>
+                </block>
+                <block wx:else>
+                    <image src="../../images/default_pic.png" mode="aspectFill"></image>
+                </block>
+                </view>
+                <!--content-->
+                <view class="section_cont" >
+                    <view class="section_cont_sub">
+                        <text>{{item.cyclingName}}</text>
+                    </view>
+                    <view class="section_cont_price" style="color:#000">{{item.cyclingMan}}<text class="section_cont_price">  {{item.cyclingMobile}} </text></view><text>\n</text>
+                    <view>{{item.cyclingIntroduce==null?'暂无':item.cyclingIntroduce}}</view>
+                </view>
+                <!--book-->
+                <view class="section_book" >
+                        <view>{{}}</view>
+                </view>
+            </view>
+            
+        </block>
+    </view>
+    
+    <view wx:else>
+    	<image src="../../static/classify/null.png" style="height: 705rpx;width: 755rpx;"></image>
+    </view>
+          
+</view>
+
+</scroll-view>
+</view>

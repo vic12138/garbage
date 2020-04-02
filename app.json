@@ -1,0 +1,69 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/information/information",
+    "pages/information/information_Detail/information_Detail",
+    "pages/recycling/recycling",
+    "pages/recycling/recyling_detail/recyling_detail",
+    "pages/search/search",
+    "pages/type/type",
+    "pages/webview/webview",
+    "pages/list/list"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序定位" 
+    }
+  },
+  
+  "plugins": {
+    "chooseLocation": {
+      "version": "1.0.1",
+      "provider": "wx76a9a06e5b4e693e"
+    },
+    "routePlan": {
+      "version": "1.0.1",
+      "provider": "wx50b5593e81dd937a"
+    }
+  },
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "环保助手",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color": "#8F8F94",
+    "selectedColor": "#000000",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "static/tabBar/first.png",
+        "selectedIconPath": "static/tabBar/newfirst.png"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "分类",
+        "iconPath": "static/tabBar/fenlei.png",
+        "selectedIconPath": "static/tabBar/newfenlei.png"
+      },
+      {
+        "pagePath": "pages/recycling/recycling",
+        "text": "回收",
+        "iconPath": "static/tabBar/xunhuan.png",
+        "selectedIconPath": "static/tabBar/newxunhuan.png"
+      },
+      {
+        "pagePath": "pages/information/information",
+        "text": "资讯",
+        "iconPath": "static/tabBar/zixun.png",
+        "selectedIconPath": "static/tabBar/newzixun.png"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap95.json"
+}

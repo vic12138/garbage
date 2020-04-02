@@ -1,0 +1,241 @@
+<view class="content">
+  <view class="form-view">
+    <form data-event-opts="{{[['submit',[['formSubmit',['$event']]]],['reset',[['formReset',['$event']]]]]}}" class="form-form" bindsubmit="__e" bindreset="__e">
+      <view class="input-view">
+        <view data-event-opts="{{[['tap',[['addapimg',['$event']]]]]}}" class="input-view-item input-view-camera" bindtap="__e">
+          <image class="search-img" src="../../static/icos/takephoto.png" style="height: 75rpx;width: 85rpx;"></image>
+        </view>
+        <!-- <view data-event-opts="{{[['tap',[['readyRecord',['$event']]]]]}}" class="input-view-item input-view-speech" bindtap="__e">
+          <image class="search-img" src="../../static/icos/maikefeng.png" style="height: 75rpx;width: 75rpx;"></image>
+        </view> -->
+        <view class="input-view-item input-view-search">
+          <input class="input-search" confirm-type="search" placeholder="输入搜索关键词" name="input" data-event-opts="{{[['search',[['doSearch',[false]]]],['input',[['setModel',['$event']]]],['confirm',[['doSearch',[false]]]]]}}"
+            value="{{keyword}}" bindsearch="__e" bindinput="__e" bindconfirm="__e" />
+        </view>
+        <view data-event-opts="{{[['tap',[['doSearch',[false]]]]]}}" class=" font-search" bindtap="__e">查询</view>
+      </view>
+    </form>
+  </view>
+  <view data-event-opts="{{[['touchstart',[['blur',['$event']]]]]}}" class="search-keyword" bindtouchstart="__e">
+    <!-- <scroll-view wx:if="{{isShowKeywordList}}" class="keyword-list-box" scroll-y>
+      <block wx:for="{{keywordList}}" wx:for-item="row" wx:for-index="__i0__" wx:key="keyword">
+        <view class="keyword-entry" hover-class="keyword-entry-tap" data-event-opts="{{[['tap',[['showDetail',['$0'],[[['keywordList','keyword',row.keyword]]]]]]]}}" bindtap="__e">
+          <view data-event-opts="{{[['tap',[['doSearch',['$0'],[[['keywordList','keyword',row.keyword,'keyword']]]]]]]}}" class="keyword-text" bindtap="__e">
+            <rich-text nodes="{{row.htmlStr}}"></rich-text>
+          </view>
+          <view>
+            <block wx:if="{{row.garbageType==1}}">
+              <view class="keyword-type garbage-gan">干垃圾</view>
+            </block>
+            <block wx:else>
+              <block wx:if="{{row.garbageType==2}}">
+                <view class="keyword-type garbage-shi">湿垃圾</view>
+              </block>
+              <block wx:else>
+                <block wx:if="{{row.garbageType==3}}">
+                  <view class="keyword-type garbage-huishou">可回收物</view>
+                </block>
+                <block wx:else>
+                  <block wx:if="{{row.garbageType==4}}">
+                    <view class="keyword-type garbage-youhai">有害垃圾</view>
+                  </block>
+                </block>
+              </block>
+            </block>
+          </view>
+          <view data-event-opts="{{[['tap',[['setkeyword',['$0'],[[['keywordList','keyword',row.keyword]]]]]]]}}" class="keyword-img" bindtap="__e">
+            <image src="/static/HM-search/back.png"></image>
+          </view>
+        </view>
+      </block>
+    </scroll-view> -->
+    <!-- <scroll-view wx:if="{{!isShowKeywordList}}" class="keyword-box" scroll-y>
+      <block>
+        <view class="keyword-block" >
+          <view class="keyword-list-header">
+            <view>历史搜索</view>
+            <view>
+              <image src="/static/HM-search/delete.png" data-event-opts="{{[['tap',[['oldDelete',['$event']]]]]}}" bindtap="__e"></image>
+            </view>
+          </view>
+          <view class="keyword">
+            <block wx:for="{{oldKeywordList}}" wx:for-item="keyword" wx:for-index="index" wx:key="index">
+              <view data-event-opts="{{[['tap',[['doSearch',['$0'],[[['oldKeywordList','',index]]]]]]]}}" bindtap="__e">{{keyword}}</view>
+            </block>
+          </view>
+        </view>
+      </block>
+      <view class="keyword-block">
+        <view class="keyword-list-header">
+          <view>热门搜索</view>
+          <view>
+            <image src="{{'/static/HM-search/attention'+forbid+'.png'}}" data-event-opts="{{[['tap',[['hotToggle',['$event']]]]]}}" bindtap="__e"></image>
+          </view>
+        </view>
+        <block wx:if="{{forbid==''}}">
+          <view class="keyword">
+            <block wx:for="{{hotKeywordList}}" wx:for-item="keyword" wx:for-index="index" wx:key="index">
+              <view data-event-opts="{{[['tap',[['doSearch',['$0'],[[['hotKeywordList','',index]]]]]]]}}" bindtap="__e">
+                <block wx:if="{{index<3}}">
+                  <view>
+                    <image class="image-hot" src="../../static/icos/hot.png" mode></image>
+                  </view>
+                </block>
+                <view>{{keyword+''}}</view>
+              </view>
+            </block>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="hide-hot-tis">
+            <view>当前搜热门搜索已隐藏</view>
+          </view>
+        </block>
+      </view>
+    </scroll-view> -->
+</view>
+
+    <view wx:if="{{imagePath}}" style="margin-top: 40rpx;">
+    <view class="photoResult">识别结果</view>
+        <block >
+         <view class="image-box">
+          <image src="{{imagePath}}" class="video" style="width:100%;height:350px;"></image>
+          </view>     
+        </block>
+
+<view class="table">
+     <view class="tr bg-w">
+        <view class="th">名称</view>
+        <view class="th">相识度</view>
+        <view class="th">分类</view>
+    </view>
+    <block wx:for="{{bindSource}}">
+    <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
+      <view class="td">{{item.name}}</view>
+      <view class="td">{{item.trust}}</view>
+      <view class="td" wx:if="{{item.lajitype == 0}}">可回收垃圾</view>
+      <view class="td" wx:elif="{{item.lajitype == 1}}">有害垃圾</view>
+      <view class="td" wx:elif="{{item.lajitype == 2}}">厨余（湿）垃圾</view>
+      <view class="td" wx:elif="{{item.lajitype == 3}}">其他（干）垃圾</view>
+      <view class="td" wx:elif="{{item.lajitype == 4}}">无法识别</view>
+    </view>
+    <view class="tr" wx:else>
+      <view class="td">{{item.name}}</view>
+      <view class="td">{{item.trust}}</view>
+      <view class="td" wx:if="{{item.lajitype == 0}}">可回收垃圾</view>
+      <view class="td" wx:elif="{{item.lajitype == 1}}">有害垃圾</view>
+      <view class="td" wx:elif="{{item.lajitype == 2}}">厨余（湿）垃圾</view>
+      <view class="td" wx:elif="{{item.lajitype == 3}}">其他（干）垃圾</view>
+      <view class="td" wx:elif="{{item.lajitype == 4}}">无法识别</view>
+    </view>
+  </block>
+  </view>
+  </view>
+
+   <view wx:if="{{searchType}}" style="margin-top: 40rpx;">
+    <view class="photoResult">搜索结果</view>
+<view class="table">
+     <view class="tr bg-w">
+        <view class="th2">名称</view>
+        <view class="th2">分类</view>
+    </view>
+  <block wx:for="{{searchSource}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+    <view class="tr bg-g" id="{{index}}"  data-index="{{index}}" 
+    data-event-opts="{{[['tap',[['detailShow',[[[index]]]]]]]}}"  bindtap="__e" wx:if="{{index % 2 == 0}}">
+      <view class="td2">{{item.name}}</view>
+      <view class="td2" wx:if="{{item.type == 0}}">可回收垃圾</view>
+      <view class="td2" wx:elif="{{item.type == 1}}">有害垃圾</view>
+      <view class="td2" wx:elif="{{item.type == 2}}">厨余（湿）垃圾</view>
+      <view class="td2" wx:elif="{{item.type == 3}}">其他（干）垃圾</view>
+      <view class="td2" wx:elif="{{item.type == 4}}">无法识别</view>
+    </view>
+    <view class="tr" id="{{index}}" data-index="{{index}}"
+    data-event-opts="{{[['tap',[['detailShow',[[[index]]]]]]]}}"  bindtap="__e" wx:else>
+      <view class="td2">{{item.name}}</view>
+      <view class="td2" wx:if="{{item.type == 0}}">可回收垃圾</view>
+      <view class="td2" wx:elif="{{item.type == 1}}">有害垃圾</view>
+      <view class="td2" wx:elif="{{item.type == 2}}">厨余（湿）垃圾</view>
+      <view class="td2" wx:elif="{{item.type == 3}}">其他（干）垃圾</view>
+      <view class="td2" wx:elif="{{item.type == 4}}">无法识别</view>
+    </view>
+    <view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}" 
+    data-event-opts="{{[['tap',[['hide',['$event']]]]]}}" bindtap="__e">
+      <view class='ruleZhezhaoContent'>
+          <text>名称：{{name}}</text>
+      <view class="type"><text>分类：</text>
+          <text wx:if="{{type == 0}}">可回收垃圾</text>
+          <text wx:elif="{{type == 1}}">有害垃圾</text>
+          <text wx:elif="{{type == 2}}">厨余（湿）垃圾</text>
+          <text wx:elif="{{type == 3}}">其他（干）垃圾</text>
+      </view>
+          <text>解释：{{explain}}</text>
+          <text>包含物品：{{contain}}</text>
+          <text>投放提示：{{tip}}</text>
+        <!-- <image src='../../images/del.png' class='ruleHide' bindtap='hideRule'>X</image> -->
+      </view>
+    </view>
+  </block>
+  </view>
+  </view>
+
+
+                <!-- <view class="weui-cell__bd">
+        <view wx:for="{{bindSource}}">
+    <view id="{{index}}" class="weui-cells__title">{{item.name}}
+    <text>相识度：{{item.trust}}</text>
+    <text wx:if="{{item.lajitype == 0}}">可回收垃圾</text>
+    <text wx:elif="{{item.lajitype == 1}}">有害垃圾</text>
+    <text wx:elif="{{item.lajitype == 2}}">厨余（湿）垃圾</text>
+    <text wx:elif="{{item.lajitype == 3}}">其他（干）垃圾</text>
+    </view>
+        </view>
+                </view>
+      </view>
+  </view> -->
+
+
+
+
+ <view>
+    <uni-popup vue-id="1" show="{{popupShow}}" position="bottom" data-event-opts="{{[['^hidePopup',[['hidePopup']]]]}}" bind:hidePopup="__e" bind:__l="__l" vue-slots="{{['default']}}">
+      <view class="view-popup">
+        <view class="recording-title">按住 说话</view>
+        <view class="recording-box">
+          <canvas id="canvas" canvas-id="canvas">
+            <view class="recording-button" animation="{{animationData}}" data-event-opts="{{[['touchstart',[['start',['$event']]]],['touchend',[['end',['$event']]]]]}}" bindtouchstart="__e" bindtouchend="__e"></view>
+          </canvas>
+        </view>
+      </view>
+    </uni-popup>
+  </view>
+  <!-- <view> -->
+    <!-- <my-popup vue-id="2" show="{{detailPopupShow}}" detail="{{detailShowObject}}" data-event-opts="{{[['^hideMypopup',[['hideMypopup']]]]}}" bind:hideMypopup="__e" bind:__l="__l"></my-popup>
+  </view>
+  <uni-popup vue-id="3" show="{{imagesResultShow}}" position="middle" mode="fixed" data-event-opts="{{[['^hidePopup',[['hideUnipPpup']]]]}}" bind:hidePopup="__e" bind:__l="__l" vue-slots="{{['default']}}">
+    <view class="imagePopup">
+      <view class="image-left">
+        <image class="tempImage" src="{{imagePath}}"></image>
+      </view>
+      <view class="image-right">
+        <view class="image-close">
+          <view>无法精准识别,请选择最接近的</view>
+        </view>
+        <view>
+          <block wx:for="{{$root.l0}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+            <view data-event-opts="{{[['tap',[['tapKeyword',['$0'],[[['imageResults','',index,'keyword']]]]]]]}}" class="list-item" bindtap="__e">
+              <view class="item-keyword">{{''+item.$orig.keyword}}</view>
+              <view class="item-pi">
+                <view>匹配度</view>
+                <view>{{''+item.g0+'% >'}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view>
+      <button class="image-button" type="primary" data-event-opts="{{[['tap',[['hideUnipPpup',['$event']]]]]}}" bindtap="__e">返回</button>
+    </view>
+  </uni-popup> -->
+  <!-- <share vue-id="4" bind:__l="__l"></share>-->
+</view> 

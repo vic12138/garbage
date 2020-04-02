@@ -1,0 +1,13 @@
+<template name="postsItem">
+  <view class="post-author-date">
+    <text class="post-author">{{source}}</text>
+    <text class="post-date">{{createTime}}</text>
+  </view>
+  <text class="post-title">{{title}}</text>
+  <image class="post-image" src="{{infoImg}}"></image>
+  <text class="post-content">{{content}}</text>
+  <view class="post-like">
+    <image class="post-like-image" src="../../static/icos/view.png"></image>
+    <text class="post-like-font">{{viewCount}}</text>
+  </view>
+</template>

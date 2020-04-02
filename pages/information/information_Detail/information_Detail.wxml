@@ -1,0 +1,22 @@
+<!--pages/posts/posts_Detali/posts_Detali.wxml-->
+<!--先静后懂 先样式在数据  -->
+<view class="container">
+  <image class="head_image" src="{{informationData.infoImg}}"></image>
+  <!-- <image class="audio" src="/images/music/music-start.png"></image> -->
+  <view class="author_date">
+    <!-- <image class="author_img" src="/images/avatar/2.png"></image> -->
+    <text class="author">{{informationData.source}}</text>
+    <text class="const">发表于</text>
+    <text class="const">{{informationData.createTime}}</text>
+  </view>
+  <text class="title">{{informationData.title}}</text>
+  <view class="tool">
+    <button class="cicle_img" open-type="share"  >
+      <image class="share_img" catchtap="onShareTop" src="../../../static/icos/share-anti.png"></image>
+    </button>
+    <view class="horizon"></view>
+  </view>
+  <text class="content">
+        {{informationData.content}}
+  </text>
+</view>

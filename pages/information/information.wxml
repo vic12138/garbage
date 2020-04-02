@@ -1,0 +1,30 @@
+<import src="information_item/information_item.wxml" />
+<view>
+    <view class="weui-navbar">
+            <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+              <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                <view class="weui-navbar__title">{{item}}</view>
+              </view>
+            </block>
+            <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+          </view>
+  <swiper indicator-dots="true" indicator-color="#ddd" autoplay="true">
+    <block wx:for="{{imgList}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+    <swiper-item>
+      <image src='{{item.imgPath}}'></image>
+    </swiper-item>
+    <!-- <swiper-item>
+      <image src="../../static/showimg/tab2.jpg"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="../../static/showimg/tab3.jpg"></image>
+    </swiper-item> -->
+    </block>
+  </swiper>
+  <block wx:for="{{infoList}}">
+      <view class="post-contain"  catchtap='onPosts' data-postsID="{{item.id}}"> 
+          <template is="postsItem" data="{{...item}}"/>
+      </view>
+  </block>
+
+</view>

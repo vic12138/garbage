@@ -1,0 +1,38 @@
+<!--pages/list/list.wxml-->
+<view>
+<!-- 左侧列表内容部分 -->
+  <scroll-view class="content" enable-back-to-top scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true" bindscroll="onPageScroll"> 
+    <view wx:for="{{listMain}}" wx:for-item="group" wx:key="{{group.id}}"  id="{{ 'inToView'+group.id}}" data-id='{{group.id}}' wx:for-index="index2" data-index2="index2"> 
+      <view class="address_top">{{group.region}}</view> 
+        <view wx:for="{{group.garbageList}}"  wx:for-item="item" wx:for-index="index"> 
+          <view class="address_bottom" data-index='{{index}}' data-index2="{{index2}}" bindtap="show">{{item.name}}</view> 
+          <view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}" bindtap="hide">
+             <view class='ruleZhezhaoContent'>
+              <text>名称：{{name}}</text>
+              <view class="type"><text>分类：</text>
+                  <text wx:if="{{type == 0}}">可回收垃圾</text>
+                  <text wx:elif="{{type == 1}}">有害垃圾</text>
+                  <text wx:elif="{{type == 2}}">厨余（湿）垃圾</text>
+                  <text wx:elif="{{type == 3}}">其他（干）垃圾</text>
+              </view>
+                  <text>解释：{{gExplain}}</text>
+                  <text>包含物品：{{contain}}</text>
+                  <text>投放提示：{{tip}}</text>
+              </view>
+          </view>
+        </view> 
+    </view> 
+  </scroll-view> 
+  <!-- 右侧字母导航 -->
+  <view class="orientation_region"> 
+    <!-- <view class="orientation"></view>  -->
+      <block wx:for="{{listMain}}"  wx:key="{{item.id}}"> 
+        <view class="orientation_city  {{isActive==item.id ? 'active':'' }}" bindtap="scrollToViewFn" data-id="{{item.id}}" >
+        {{item.region}}
+        </view> 
+    </block> 
+  </view> 
+
+
+
+  </view>
